@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+    {% if announcement.author == request.user %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:announcement_update' announcement.pk %}">Редактировать</a>
+        </li>
+    {% endif %}
+    {% if announcement.author == request.user %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:announcement_delete' announcement.pk %}">Удалить</a>
+        </li>
+    {% endif %}
+    {% if announcement.author != request.user %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:comment_create' announcement.pk %}">Добавить комментарий</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="card m-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ announcement.picture.url }}" class="card-img-top">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Заголовок: {{ announcement.title }}</h5>
+                    <p class="card-text">Описание: {{ announcement.description }}</p>
+                    <p class="card-text">Автор: {{ announcement.author }}</p>
+                    <p class="card-text">Категория: {{ announcement.category }}</p>
+                    <p class="card-text">Цена: {{ announcement.price }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if comments %}
+        <h3 class="text-center">Отзывы</h3>
+        <div class="row">
+            {% for comment in comments %}
+                <div class="col-sm-3">
+                    <div class="card-header"><a
+                            href="{% url 'accounts:detail' comment.author.pk %}">{{ comment.author.username }}
+                        | {{ comment.created_at }} </a>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ comment.text }}</p>
+                        {% if perms.webapp.delete_comment or comment.author == request.user %}
+                            <a href="{% url 'webapp:comment_delete' comment.pk %}"
+                               class="btn btn-danger px-5">Удалить</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

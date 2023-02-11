@@ -9,6 +9,9 @@ STATUSES = [('for moderation', 'на модерацию'), ('published', 'опу
 class Category(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Announcement(models.Model):
     picture = models.ImageField(verbose_name='Фотография', upload_to='photos', null=True, blank=True)
@@ -21,11 +24,14 @@ class Announcement(models.Model):
     price = models.IntegerField(verbose_name='Цена', validators=(MinValueValidator(1),))
     status = models.CharField(max_length=30, default='for moderation', choices=STATUSES, verbose_name='Статус')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата-время создания')
-    published_at = models.DateTimeField(verbose_name='Дата-время публикации')
+    published_at = models.DateTimeField(null=True, blank=True, verbose_name='Дата-время публикации')
     edited_at = models.DateTimeField(auto_now=True, verbose_name='Дата-время редактирования')
 
+    class Meta:
+        permissions = [("view_not_moderated_announcement", "Видеть немодерированные объявления")]
+
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.title} - {self.status}"
 
 
 class Comment(models.Model):

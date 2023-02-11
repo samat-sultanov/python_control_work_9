@@ -33,6 +33,23 @@ class RegisterView(CreateView):
         return reverse('webapp:index')
 
 
+class UserDetailView(DetailView):
+    model = get_user_model()
+    template_name = 'user_detail.html'
+    context_object_name = 'user_obj'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     photos = self.object.photos.all()
+    #     albums = self.object.albums.all()
+    #
+    #     if self.object != self.request.user:
+    #         photos = photos.filter(is_private=False)
+    #         albums = albums.filter(is_private=False)
+    #
+    #     context['photos'] = photos.order_by('-created_at')
+    #     context['albums'] = albums.order_by('-created_at')
+    #     return context
 
 
 class UserChangeView(LoginRequiredMixin, UpdateView):
