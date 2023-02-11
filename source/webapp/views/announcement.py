@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.utils.http import urlencode
@@ -88,9 +89,17 @@ class UpdateAnnouncementView(PermissionRequiredMixin, UpdateView):
 
 class DeleteAnnouncementView(PermissionRequiredMixin, DeleteView):
     model = Announcement
+    context_object_name = 'announcement'
     template_name = 'announcement/delete.html'
     success_url = reverse_lazy('webapp:index')
     permission_required = 'webapp.delete_announcement'
+
+    def get_object(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        announcement = get_object_or_404(Announcement, pk=pk)
+        announcement.status = "for deletion"
+        announcement.save()
+        return announcement
 
     def has_permission(self):
         return self.get_object().author == self.request.user

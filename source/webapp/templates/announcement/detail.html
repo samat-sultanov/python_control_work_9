@@ -12,7 +12,7 @@
             <a class="nav-link" href="{% url 'webapp:announcement_delete' announcement.pk %}">Удалить</a>
         </li>
     {% endif %}
-    {% if announcement.author != request.user %}
+    {% if request.user.is_authenticated and announcement.author != request.user %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'webapp:comment_create' announcement.pk %}">Добавить комментарий</a>
         </li>

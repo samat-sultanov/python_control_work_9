@@ -38,18 +38,17 @@ class UserDetailView(DetailView):
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     photos = self.object.photos.all()
-    #     albums = self.object.albums.all()
-    #
-    #     if self.object != self.request.user:
-    #         photos = photos.filter(is_private=False)
-    #         albums = albums.filter(is_private=False)
-    #
-    #     context['photos'] = photos.order_by('-created_at')
-    #     context['albums'] = albums.order_by('-created_at')
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        announcements = self.object.announcements_a.all()
+
+        if self.object != self.request.user:
+            announcements = announcements.filter(status__exact='published')
+        elif self.object == self.request.user:
+            announcements = announcements.exclude(status='for deletion')
+
+        context['announcements'] = announcements.order_by('-created_at')
+        return context
 
 
 class UserChangeView(LoginRequiredMixin, UpdateView):

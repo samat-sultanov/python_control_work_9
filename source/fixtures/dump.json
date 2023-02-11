@@ -1,0 +1,183 @@
+[
+{
+    "model": "webapp.category",
+    "pk": 1,
+    "fields": {
+        "name": "Общие"
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 2,
+    "fields": {
+        "name": "Сладости"
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 3,
+    "fields": {
+        "name": "Напитки"
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 4,
+    "fields": {
+        "name": "Услуги"
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 5,
+    "fields": {
+        "name": "Фаст-фуд"
+    }
+},
+{
+    "model": "webapp.announcement",
+    "pk": 1,
+    "fields": {
+        "picture": "photos/cheesecake.jpg",
+        "title": "Десерт",
+        "description": "Десерты на заказ",
+        "author": 1,
+        "category": 2,
+        "price": 150,
+        "status": "for moderation",
+        "created_at": "2023-02-11T07:39:54.513Z",
+        "published_at": "2023-02-11T07:39:51Z",
+        "edited_at": "2023-02-11T08:29:31.122Z"
+    }
+},
+{
+    "model": "webapp.announcement",
+    "pk": 2,
+    "fields": {
+        "picture": "photos/fried_potatos.jpg",
+        "title": "Картошка фри",
+        "description": "Принимаем заказы на картошку фри.",
+        "author": 1,
+        "category": 5,
+        "price": 100,
+        "status": "published",
+        "created_at": "2023-02-11T07:50:46.677Z",
+        "published_at": "2023-02-11T07:50:45Z",
+        "edited_at": "2023-02-11T08:29:22.818Z"
+    }
+},
+{
+    "model": "webapp.announcement",
+    "pk": 6,
+    "fields": {
+        "picture": "photos/bag.jpg",
+        "title": "Сумка",
+        "description": "Продаю школьную сумку.",
+        "author": 3,
+        "category": 1,
+        "price": 800,
+        "status": "for deletion",
+        "created_at": "2023-02-11T08:31:30.625Z",
+        "published_at": "2023-02-11T08:31:29Z",
+        "edited_at": "2023-02-11T12:20:11.165Z"
+    }
+},
+{
+    "model": "webapp.announcement",
+    "pk": 7,
+    "fields": {
+        "picture": "photos/food.jpg",
+        "title": "Ашлян-фу",
+        "description": "Ашлян-фу на заказ",
+        "author": 3,
+        "category": 5,
+        "price": 1500,
+        "status": "for deletion",
+        "created_at": "2023-02-11T08:33:25.600Z",
+        "published_at": "2023-02-11T08:33:24Z",
+        "edited_at": "2023-02-11T12:25:22.278Z"
+    }
+},
+{
+    "model": "webapp.announcement",
+    "pk": 8,
+    "fields": {
+        "picture": "photos/samsy.jpg",
+        "title": "Самсы",
+        "description": "Самсы на заказ",
+        "author": 2,
+        "category": 5,
+        "price": 70,
+        "status": "published",
+        "created_at": "2023-02-11T08:34:08.889Z",
+        "published_at": "2023-02-11T08:34:08Z",
+        "edited_at": "2023-02-11T08:34:08.889Z"
+    }
+},
+{
+    "model": "webapp.announcement",
+    "pk": 10,
+    "fields": {
+        "picture": "photos/fanta.jpg",
+        "title": "Фанта",
+        "description": "Продается фанта оптом",
+        "author": 3,
+        "category": 3,
+        "price": 50,
+        "status": "published",
+        "created_at": "2023-02-11T10:19:36.447Z",
+        "published_at": null,
+        "edited_at": "2023-02-11T12:19:35.103Z"
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 2,
+    "fields": {
+        "text": "Лучшая фри в бишкеке",
+        "author": 3,
+        "announcement": 2,
+        "created_at": "2023-02-11T10:05:29.346Z"
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 3,
+    "fields": {
+        "text": "Хороший напиток для компании",
+        "author": 2,
+        "announcement": 10,
+        "created_at": "2023-02-11T11:12:36.192Z"
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 5,
+    "fields": {
+        "text": "лучше колы!",
+        "author": 4,
+        "announcement": 10,
+        "created_at": "2023-02-11T11:15:26.983Z"
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 7,
+    "fields": {
+        "text": "лучшая еда для перекуса",
+        "author": 3,
+        "announcement": 8,
+        "created_at": "2023-02-11T11:27:53.307Z"
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 8,
+    "fields": {
+        "text": "в течении какого времени можете доставить?",
+        "author": 3,
+        "announcement": 8,
+        "created_at": "2023-02-11T11:32:08.561Z"
+    }
+}
+]
